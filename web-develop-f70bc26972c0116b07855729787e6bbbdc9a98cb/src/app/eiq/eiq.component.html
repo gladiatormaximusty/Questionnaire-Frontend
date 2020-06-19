@@ -1,0 +1,70 @@
+<div class="ng-eiq-left">
+    <div class="pageTop">
+        <span></span>
+    </div>
+    <div class="ng-eiq-left-title">
+        <a [routerLink]="['/MyQuestions']"><img src="../../assets/images/ShapeCopy25.png">My Questionnaires</a>
+    </div>
+    <div class="ng-eiq-left-wz">
+        <span *ngFor="let item of EntityData;let key=index" [ngClass]="{'active':entityIndex==key}" (click)="EntityClick(item.id,key)">{{item.entityName}}</span>
+    </div>
+</div>
+<div class="ng-eiq-right">
+    <div class="pageTop">
+        <span class="pageTop-title">Control Risk Questionnaire</span>
+        <a [routerLink]="['/ProfileInformationPersonal']"><span class="pageTop-photo"><img [src]="imagesTX"></span></a>
+    </div>
+    <div class="ng-eiq-right-title">
+        <ul class="ng-eiq-left-btn" (click)="leftClick()"><img src="../../assets/images/ShapeCopy25.png"></ul>
+        <ul class="ng-eiq-middle" id="marqueeContent">
+            <li id="marquee">
+                <span [ngClass]="{'active':typeIndex==key}" *ngFor="let item of TypeData;let key=index" (click)="typeClick(item.id,key,item.questionTypeName)">{{item.questionTypeName}}</span>
+            </li>
+        </ul>
+        <ul class="ng-eiq-right-btn" (click)="rightClick()"><img src="../../assets/images/ShapeCopy24.png"></ul>
+    </div>
+    <div class="ng-eiq-content">
+        <div class="ng-eiq-content-title">
+            <span class="ng-eiq-content-title1">{{questionTypeName}}</span>
+            <span><progress [value]="percentage" max="100"></progress></span>
+            <span class="ng-eiq-content-number">{{QuestionNumber}} / {{questionData.questionCount}}</span>
+        </div>
+        <div class="ng-eiq-content-issue" *ngFor="let item of questionData.questionnaire;let key=index">
+            <div class="ng-eiq-content-issue-title" [ngClass]="{'warning':item.iswarn}">{{item.questionCode}}. {{item.question}}</div>
+            <div class="ng-eiq-content-issue-answer">
+                <div *ngIf="item.hasAnswer">
+                    <el-radio-group [model]="item.selectedAnswerId" [(ngModel)]="item.selectedAnswerId" (ngModelChange)="changeStat()">
+                        <el-radio [label]="radio.id" *ngFor="let radio of item.answers" [elDisabled]="questionData.isReadOnly">{{radio.answerContent}}</el-radio>
+                    </el-radio-group>
+                </div>
+                <div *ngIf="item.hasSupportingDocument">
+                    <div class="ng-Upload-file-list" *ngFor="let file of item.supportingDocument;let i=index">
+                        <span>{{file.name}}</span>
+                        <img src="../../assets/images/Survey.svg" (click)="downloadFile(key,i)">
+                        <img src="../../assets/images/7Survey.png" (click)="delFile(key,i)">
+                    </div>
+                    <div class="ng-Upload-file">
+                        <img src="../../assets/images/Group3.svg">Upload files
+                        <input type="file" (change)="fileChange($event,key)" [disabled]="questionData.isReadOnly">
+                    </div>
+                </div>
+                <div *ngIf="item.hasFreeText">
+                    <input *ngIf="item.isFreeTextNumeric" type="text" oninput = "value=value.replace(/[^\d]/g,'')" class="ng-eiq-input" [placeholder]="item.freeTextPlaceholder" (change)="changeStat()" [(ngModel)]="item.freeText"  [disabled]="questionData.isReadOnly">
+                    <input *ngIf="!item.isFreeTextNumeric" type="text" class="ng-eiq-input" [placeholder]="item.freeTextPlaceholder" (change)="changeStat()" [(ngModel)]="item.freeText"  [disabled]="questionData.isReadOnly">
+                    <div class="ng-Numeric-only" *ngIf="item.isFreeTextNumeric"><img src="../../assets/images/7Questionnaire .svg">Numeric only</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ng-submit-btn" *ngIf="!questionData.isReadOnly">
+        <span class="ng-submit-save" (click)="SaveData()"><img src="../../assets/images/Group15.svg">SAVE</span>
+        <a [routerLink]="['/MyQuestions']"><span class="ng-submit-cancel margin-left-30">CANCEL</span></a>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

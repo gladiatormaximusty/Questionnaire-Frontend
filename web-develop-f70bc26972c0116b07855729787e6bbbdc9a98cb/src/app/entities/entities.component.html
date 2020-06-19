@@ -1,0 +1,42 @@
+<div>
+    <div class="ng-crumbs"><a routerLink="/">Home</a>>Entities Management</div>
+    <div class="ng-pageName-title">
+        <ul class="ng-pageName-title-left">
+            <li>Entities Management</li>
+        </ul>
+    </div>
+
+    <div class="ng-table-style">
+        <table class="ng-table-flex">
+
+            <p>Included Entities</p>
+            <div class="form">
+                <div class="insertData" >
+                    <ul *ngFor="let item of list; let key = index">
+                        <li> <input type="text" [(ngModel)]="item.entityName" value="{{item.entityName}}" [id]=key><img src="../../assets/images/ic_trash.png" (click)="deleteItem(key)"></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="ng-new-addInfo" (click)="addInput()">+</div>
+
+            <div class="ng-submit-btn">
+                <span class="ng-submit-save" (click)="sendData()"><img src="../../assets/images/Group15.svg">SAVE</span>
+                <span class="ng-submit-cancel margin-left-30" ><a [routerLink]="['/Homepage']" [queryParams]="{aid:0}" >CANCEL</a></span>
+            </div>
+
+            <!-- <pre>
+                {{list|json}}
+            </pre> -->
+        </table>
+
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

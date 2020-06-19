@@ -1,0 +1,65 @@
+<div class="pageTop">
+    <span class="pageTop-photo"><img [src]="imagesTX"></span>
+</div>
+
+<div class="ng-my-personProfile">
+    <div class="ng-my-personProfile-bg">
+        <div class="ng-crumbs"><a [routerLink]="['/MyQuestions']">Home</a>>Profile Information</div>
+        <div class="ng-pageName-title">
+            <ul class="ng-pageName-title-left">
+                <li>Profile Information</li>
+            </ul>
+        </div>
+
+        <div class="ng-write-style">
+            <div class="ng-write-style-right">
+                <ul>
+                    <li class="ng-write-right-tx"><img [src]="imagesTX"></li>
+                </ul>
+            </div>
+            <div class="ng-write-info">
+                <ul class="ng-write-info-short">
+                    <li>First Name</li>
+                    <li>{{firstName}}</li>
+                </ul>
+                <ul class="ng-write-info-short">
+                    <li>Last Name</li>
+                    <li>{{lastName}}</li>
+                </ul>
+                <ul class="ng-write-info-long">
+                    <li>Email</li>
+                    <li>{{email}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ng-write-style">
+            <div class="ng-write-info ng-write-bottom">
+                <ul class="ng-write-info-long">
+                    <li>Latest Login</li>
+                    <li>{{latestLogin | date:'dd,MMMM yyy HH:mm'}}</li>
+                </ul>
+                <ul class="ng-write-info-long">
+                    <li>Latest Update</li>
+                    <li>{{latestUpdate| date:'dd,MMMM yyy HH:mm'}}</li>
+                </ul>
+                <ul class="ng-write-info-long">
+                    <li>Create</li>
+                    <li>{{creatTime | date:'dd,MMMM yyy HH:mm'}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ng-submit-btn">
+            <span class="ng-submit-save" (click)="logout()">Logout</span>
+            <span class="ng-submit-cancel margin-left-30"><a [routerLink]="['/PasswordReset']">RESET PASSWORD</a></span>
+        </div>
+        <div class="loading" *ngIf="elLoading">
+            <div class="loading-bg"></div>
+            <div class="loading-img">
+                <div><img src="../../assets/images/loding.gif"></div>
+                <div>loading...</div>
+            </div>
+        </div>
+    </div>
+</div>

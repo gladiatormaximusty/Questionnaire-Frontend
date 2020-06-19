@@ -1,0 +1,61 @@
+<div>
+    <div class="ng-crumbs"><a [routerLink]="['/Homepage']">Home</a>> Question Management</div>
+    <div class="ng-pageName-title"><ul class="ng-pageName-title-left"><li>Question Management</li></ul></div>
+
+    <div class="ng-table-style">
+        <div class="ng-table-top">
+            <span class="ng-table-select">
+                <select (change)="ChangeSelect()" [(ngModel)]="search.questionTypeId">
+                    <option [value]="0">All</option>
+                    <option *ngFor="let item of typeList" [value]="item.questionTypeId">{{item.questionTypeName}}</option>
+                </select>
+            </span>
+            <span class="ng-table-top-left">
+                <img src="../../assets/images/Group4.svg">
+                <input type="text" placeholder="Search Question…" (keydown)="inputSearch($event)" [(ngModel)]="search.question">
+            </span>
+            <span class="ng-table-select">
+                <select (change)="ChangeSelect()" [(ngModel)]="search.status">
+                    <option value="">All</option>
+                    <option value="Active">Active</option>
+                    <option value="InActive">InActive</option>
+                </select>
+            </span>
+        </div>
+        <a [routerLink]="[ '/Questions/QuestionInfo']" [queryParams]="{change:0}" ><div class="ng-new-addInfo">+</div></a>
+        <table class="ng-table-flex">
+            <tr class="ng-table-flex-th">
+                <th>Question Type Name<img src="../../assets/images/Group20.png" (click)="sorted('questionTypeName')"></th>
+                <th>Question ID<img src="../../assets/images/Group20.png" (click)="sorted('questionCode')"></th>
+                <th class="ng-table-flex-max">Question </th>
+                <th>status</th>
+                <th>Action</th>
+            </tr>
+            <tr class="ng-table-flex-tr" *ngFor="let item of DataList;let key=index">
+                <td class="ng-color-blue ng-underline"><a [routerLink]="[ '/QuestionTypes/QuestionTypeInfo']" [queryParams]="{id:item.questionTypeId,change:1}" >{{item.questionTypeName}}</a></td>
+                <td>{{item.questionCode}}</td>
+                <td class="ng-table-flex-max">{{item.question}}</td>
+                <td [ngClass]="{'ng-color-red': item.status=='Active'}">{{item.status}}</td>
+                <td>
+                    <div class="ng-operating-button" (click)="ActionShow(key)"><img src="../../assets/images/Group13.svg"></div>
+                    <div class="ng-position-absolute" [hidden]="!item.isShow">
+                        <a [routerLink]="[ '/Questions/QuestionInfo']" [queryParams]="{id:item.id,change:1}" ><span>Edit Question</span></a>
+                        <span (click)="DelType(item.id)" *ngIf="item.status=='Active'">Delete</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="pagination-demo" *ngIf="pageShow">
+            <div class="block">
+              <el-pagination [total]="totalCount" (modelChange)="ChangePage($event)" [layout]="['prev', 'pager', 'next']"></el-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

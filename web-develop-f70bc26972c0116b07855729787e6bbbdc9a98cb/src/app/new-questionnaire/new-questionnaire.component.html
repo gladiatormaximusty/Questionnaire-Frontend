@@ -1,0 +1,121 @@
+<div>
+    <div class="ng-crumbs"><a routerLink="/Homepage">Home</a>> <a [routerLink]="['/Questionnaires']">Questionnaire </a>>{{title}}</div>
+    <div class="ng-pageName-title">
+        <ul class="ng-pageName-title-left"><li>{{title}}</li></ul>
+    </div>
+    <div class="ng-write-style">
+        <div>
+            <ul>
+                <li>Status</li>
+                <li><select [(ngModel)]="DataList.questionnaire.status">
+                    <option value="Pending">Pending</option>
+                    <option value="Reviewing">Reviewing</option>
+                    <option value="Finished">Finished</option>
+                    <option value="Drafting">Drafting</option>
+                </select></li>
+            </ul>
+            <ul>
+                <li>Risk Type</li>
+                <li><select [(ngModel)]="DataList.questionnaire.riskType">
+                    <option value="Control Risk">Control Risk</option>
+                    <option value="Inherent Risk">Inherent Risk</option>
+                </select></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>Questionnaire ID </li>
+                <li><input type="text" value="00003" [(ngModel)]="DataList.questionnaire.questionnaireCode"></li>
+            </ul>
+            <ul>
+                <li>Questionnaire Name</li>
+                <li><input type="text" placeholder="Questionnaire Name" [(ngModel)]="DataList.questionnaire.questionnaireName"></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>Submission Deadline</li>
+                <li>
+                    <el-date-picker [format]="'yyyy/MM/dd'" readonly="readonly" placeholder="select Date" [(ngModel)]="DataList.questionnaire.submissionDeadline"></el-date-picker>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="ng-table-style">
+        <div class="ng-table-title">
+            <span>Questionnaire Asign</span>
+        </div>
+        <div class="ng-table-top">
+            <span class="ng-table-select" (click)="ChooseType(true)">
+                Choose Your Question Type<img src="../../assets/images/editW.png">
+            </span>
+        </div>
+        <div class="ng-table-Switch">
+            <div *ngFor="let item of DataList.questionnaire.questionType;let i = index" [ngClass]="{'active':i==nowIndex}">
+                <span *ngIf="item.isSeleted" (click)="tableSwitch(item.questionTypeId,i)">{{item.questionTypeName}}</span>
+            </div>
+        </div>
+        <div *ngFor="let item of DataList.asignQuestionType" class="ng-table-width">
+            <div class="ng-table-overflow" *ngIf="item.questionTypeId==nowId&&item.questions!=''">
+                <table class="ng-table-flex">
+                    <tr class="ng-table-flex-th">
+                        <th>Question ID</th>
+                        <th class="ng-table-max-width">Question</th>
+                        <th class="ng-table-text-center">Single <br>Answer</th>
+                        <th *ngFor="let entities of entitiesData" class="ng-table-entities-width">
+                            {{entities.entityName}}
+                            <img (click)="copy(item.questions,entities.id)" src="../../assets/images/ic_content_copy1.svg">
+                            <img (click)="paste(item.questions,entities.id)" src="../../assets/images/ic_content_copy2.svg">
+                        </th>
+                    </tr>
+                    <tr class="ng-table-flex-tr" *ngFor="let list of item.questions">
+                        <td>{{list.questionCode}}</td>
+                        <td class="ng-table-max-width">{{list.question}}</td>
+                        <td class="ng-table-text-center"><el-checkbox [model]="list.singleAnswer" [(ngModel)]="list.singleAnswer"></el-checkbox></td>
+                        <td *ngFor="let data of list.entities" class="ng-table-entities-width">
+                            <div>
+                                <div *ngFor="let busSelect of data.bUs"><span *ngIf="busSelect.isSeleted">{{busSelect.buName}}</span></div>
+                                <div class="ng-table-amend-btn" (click)="ChooseBUs(item.questionTypeId,list.questionId,data.entitiesId,true,true)"><img src="../../assets/images/7.1MyQuestionnaire.svg"></div>
+                            </div>
+                            <!-- <div class="ng-new-addInfo" *ngIf="list.entities==''">+</div> -->
+                            <div class="ng-choose-popup" *ngIf="data.isChangeBU">
+                                <div class="ng-choose-popup-title">
+                                    <span>Choose BUs</span>
+                                    <span class="ng-Select-All ng-color-blue" (click)="selectAll(item.questionTypeId,list.questionId,data.entitiesId,true)">Select All</span>
+                                </div>
+                                <div class="ng-choose-popup-checkbox">
+                                    <span *ngFor="let busSelect of data.bUs"><el-checkbox [(ngModel)]="busSelect.isSeleted" [model]="busSelect.isSeleted">{{busSelect.buName}}</el-checkbox></span>
+                                </div>
+                                <div class="ng-submit-btn">
+                                    <span class="ng-submit-cancel margin-left-30" (click)="ChooseBUs(item.questionTypeId,list.questionId,data.entitiesId,false,false)">CANCEL</span>
+                                    <span class="ng-submit-save" (click)="ChooseBUs(item.questionTypeId,list.questionId,data.entitiesId,false,true)"><img src="../../assets/images/Group15.svg">SAVE</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="ng-submit-btn">
+        <span class="ng-submit-save" (click)="saveData()"><img src="../../assets/images/Group15.svg">SAVE</span>
+        <a [routerLink]="[ '/Questionnaires']" ><span class="ng-submit-cancel margin-left-30">CANCEL</span></a>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>
+<div class="ng-choose-popup" *ngIf="TypeValue">
+    <div class="ng-choose-popup-title">Choose Your Question Type</div>
+    <div class="ng-choose-popup-checkbox">
+        <span *ngFor="let item of TypeData"><el-checkbox [model]="item.isSeleted" [(ngModel)]="item.isSeleted">{{item.questionTypeName}}</el-checkbox></span>
+    </div>
+    <div class="ng-submit-btn">
+        <span class="ng-submit-cancel margin-left-30" (click)="ChooseType(false)">CANCEL</span>
+        <span class="ng-submit-save" (click)="typeSave()"><img src="../../assets/images/Group15.svg">SAVE</span>
+    </div>
+</div>

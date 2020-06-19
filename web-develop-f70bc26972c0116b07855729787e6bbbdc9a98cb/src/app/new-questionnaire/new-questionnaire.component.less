@@ -1,0 +1,348 @@
+
+.ng-write-style{
+    width: calc(100% - 68px);
+    background: #fff;
+    padding: 34px;
+    margin-top: 20px;
+    &>div{
+        width: 100%;
+        ul{
+            width: 369px;
+            display: inline-block;
+            margin-right: 36px;
+            margin-bottom: 31px;
+            li{
+                width: 100%;
+                select,input{
+                    width: 100%;
+                    height: 40px;
+                    border: none;
+                    border-bottom: #D7D7D7 solid 1px;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+.ng-table-style{
+    width: 100%;
+    background: #fff;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    .ng-table-title{
+        width: calc(100% - 27px);
+        height: 70px;
+        line-height: 70px;
+        font-size: 20px;
+        font-weight: bold;
+        padding-left: 27px;
+    }
+    .ng-table-top{
+        line-height: 70px;
+        width: 100%;
+        display: inline-block;
+        position: relative;
+        .ng-table-select{
+            height: 34px;
+            width: 225px;
+            margin-left: 27px;
+            background-color: #f8f8f8;
+            border: #e4e4e4 solid 1px;
+            border-radius: 4px;
+            float: left;
+            font-size: 14px;
+            padding: 0 5px;
+            line-height: 34px;
+            img{
+                width: 10px;
+                float: right;
+                margin-right: 5px;
+                margin-top: 13px;
+            }
+        }
+    }
+    .ng-table-Switch{
+        width: calc(100% - 16px);
+        margin-left: 16px;
+        overflow-x: auto;
+        white-space: nowrap;
+        &>div{
+            display: inline-block;
+            cursor: pointer;
+            span{
+                margin: 0 11px;
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 60px;
+
+            }
+        }
+        .active{
+            border-bottom: #1D92EC solid 4px;
+        }
+        &::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width: 5px;
+            /*高宽分别对应横竖滚动条的尺寸*/
+            height: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块*/
+            border-radius: 5px;
+            background: #929292;
+        }
+
+        &::-webkit-scrollbar-track {
+            /*滚动条里面轨道*/
+            background: #fff;
+        }
+    }
+    .ng-table-width{
+        width: 100%;
+        .ng-table-overflow{
+            width: 100%;
+            overflow-x: auto;
+            &::-webkit-scrollbar {
+                /*滚动条整体样式*/
+                width: 5px;
+                /*高宽分别对应横竖滚动条的尺寸*/
+                height: 5px;
+            }
+    
+            &::-webkit-scrollbar-thumb {
+                /*滚动条里面小方块*/
+                border-radius: 5px;
+                background: #929292;
+            }
+    
+            &::-webkit-scrollbar-track {
+                /*滚动条里面轨道*/
+                background: #fff;
+            }
+        }
+    }
+    .ng-table-flex{
+        width: 100%;
+        text-align: left;
+        font-size: 15px;
+        table-layout: fixed;
+        .ng-table-flex-th{
+            color: #929292;
+            th{
+                font-weight: normal;
+                img{
+                    margin-bottom: -8px;
+                }
+            }
+        }
+        .ng-table-max-width{
+            width: 278px;
+        }
+        tr{
+            height: 67px;
+            border-top: #EBEBEB solid 1px;
+            th:first-child,td:first-child{
+                text-align: left;
+                padding-left: 30px;
+                width: 100px;
+            }
+            th:last-child,td:last-child{
+                text-align: center;
+                padding-right: 20px;
+            }
+            a{
+                text-decoration: underline;
+            }
+            progress{
+                width: 165px;
+                height: 4px;
+                background:#ECECEC;
+                border-radius: 3.5px;
+            }
+            progress::-webkit-progress-bar{     
+                background-color: #ECECEC;
+                border-radius: 3.5px;
+            }
+            progress::-webkit-progress-value{
+                background: #1D92EC;
+                border-radius: 3.5px; 
+            }
+            .ng-operating-button{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                vertical-align: middle;
+                text-align: center;
+                background: #fff;
+                display: inline-block;
+                border: #F0F0F0 solid 1px;
+                line-height: 40px;
+                cursor: pointer;
+                img{
+                    vertical-align: middle;
+                }
+            }
+            td{
+                position: relative;
+                padding: 25px 10px;
+                .ng-table-amend-btn{
+                    padding: 10px 0px;
+                    cursor: pointer;
+                }
+            }
+            .ng-table-flex-max{
+                width: 538px;
+            }
+            .ng-table-text-center{
+                width: 60px;
+                text-align: center;
+            }
+            .ng-table-entities-width{
+                min-width: 130px;
+                width: 130px;
+            }
+            .ng-new-addInfo{
+                width: 40px;
+                height: 40px;
+                background: #fff;
+                box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.05);
+                border-radius: 50%;
+                color: #9A9A9A;
+                text-align: center;
+                line-height: 40px;
+                font-size: 28px;
+                cursor: pointer;
+                a{
+                    display: inline-block;
+                    width: 100%;
+                    color: #fff;
+                }
+            }
+            .ng-position-absolute{
+                position: absolute;
+                width: 211px;
+                background: #fff;
+                right: 30%;
+                top: 10px;
+                box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.21);
+                span{
+                    width: 187px;
+                    line-height: 34px;
+                    display: inline-block;
+                    padding-left:24px;
+                    text-align: left;
+                    margin: 12px 0;
+                    cursor: pointer;
+                }
+                .active{
+                    background: #f7f7f7;
+                }
+            }
+        }
+        .ng-table-flex-tr:hover{
+            background-color: #f8f8f8;
+        }
+    }
+    .pagination-demo{
+        width: 100%;
+        line-height: 46px;
+        margin-top: 20px;
+        &>div{
+            text-align: center;
+        }
+        /deep/ .el-pager li.active{
+            background: #f7f7f7 !important;
+            border-radius: 50%;
+            min-width: 28px;
+        }
+    }
+}
+.ng-submit-btn{
+    margin-top: 50px;
+    .ng-submit-save{
+        img{
+            margin-right:5px ;
+            margin-bottom: -5px;
+        }
+    }
+}
+/deep/ .el-input{
+    width: 373px !important;
+    margin-top: 10px;
+}
+/deep/ .el-input__inner{
+    border: none;
+    border-bottom: #D7D7D7 solid 1px;
+    width: 373px;
+    padding: 0px;
+    font-size: 16px;
+}
+
+.ng-choose-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    width: 386px;
+    height: 617px;
+    box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.05);
+    padding: 0 36px;
+    z-index: 99;
+    padding-bottom: 17px;
+    .ng-choose-popup-title{
+        font-size: 20px;
+        font-weight: bold;
+        width: 100%;
+        margin-top: 36px;
+        display: inline-block;
+        span:first-of-type{
+            float: left;
+        }
+        .ng-Select-All{
+            float: right;
+            font-size: 14px;
+            font-weight: normal !important;
+            cursor: pointer;
+        }
+    }
+    .ng-choose-popup-checkbox{
+        width: 100%;
+        height: 460px;
+        overflow-y: auto;
+        span{
+            width: 100%;
+            display: inline-block;
+            margin-top: 30px;
+            color: #222;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            text-align: left;
+        }
+        &::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width: 3px;
+            /*高宽分别对应横竖滚动条的尺寸*/
+            height: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块*/
+            border-radius: 5px;
+            background: #929292;
+        }
+
+        &::-webkit-scrollbar-track {
+            /*滚动条里面轨道*/
+            background: #fff;
+        }
+    }
+    .ng-submit-btn{
+        text-align: right;
+        .ng-submit-save{
+            margin-left: 35px;
+        }
+    }
+}

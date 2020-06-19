@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="37px" height="28px" viewBox="0 0 37 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>246E4424-4201-4171-BFCD-3C53346BE93C</title>
+    <g id="-----" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="6.0-User-Management" transform="translate(-39.000000, -251.000000)">
+            <g id="header" transform="translate(0.000000, -4.000000)">
+                <g id="Group-10" transform="translate(39.000000, 255.000000)">
+                    <g id="create_new" transform="translate(10.000000, 5.000000)" fill="#1D92EC" fill-rule="nonzero">
+                        <path d="M13.8461538,7.84246154 L13.8461538,15.2307692 L1.38461538,15.2307692 L1.38461538,5.53846154 L8.77292308,5.53846154 L12.9267692,1.38461538 L1.38461538,1.38461538 C0.619615385,1.38461538 0,2.00423077 0,2.76923077 L0,15.2307692 C0,15.9957692 0.619615385,16.6153846 1.38461538,16.6153846 L13.8461538,16.6153846 C14.6111538,16.6153846 15.2307692,15.9957692 15.2307692,15.2307692 L15.2307692,6.45853846 L13.8461538,7.84246154 Z" id="Path"></path>
+                        <path d="M17.2779231,2.45284615 L17.6413846,2.08938462 C18.1190769,1.61169231 18.1190769,0.836307692 17.6413846,0.358615385 C17.1636923,-0.119076923 16.3883077,-0.119076923 15.9106154,0.358615385 L15.5471538,0.722076923 L17.2779231,2.45284615 Z" id="Path"></path>
+                        <polygon id="Path" points="14.5682308 1.701 7.25192308 9.01730769 6.92307692 11.0769231 8.98269231 10.7480769 16.299 3.43176923"></polygon>
+                    </g>
+                    <text id="Users" font-family="Roboto-Regular, Roboto" font-size="13" font-weight="normal" fill="#141414">
+                        <tspan x="0" y="39">Users </tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

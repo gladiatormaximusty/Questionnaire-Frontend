@@ -1,0 +1,68 @@
+<div>
+    <div class="ng-crumbs">
+        <a [routerLink]="['/Homepage']">Home</a>>
+        <a [routerLink]="['/Questionnaires']">Questionnaire Management</a>>
+        <a [routerLink]="['/Questionnaires/ControlRisk']" [queryParams]="{id:search.id}">ControlRisk</a>>
+        Supporting Document
+    </div>
+    <div class="ng-pageName-title"><ul class="ng-pageName-title-left"><li>Supporting Document</li></ul></div>
+
+    <div class="ng-table-style">
+        <div class="ng-table-top">
+            <span class="ng-table-top-left">
+                <img src="../../assets/images/Group4.svg">
+                <input type="text" placeholder="Search Document" [(ngModel)]="search.name" (keydown)="inputSearch($event)">
+            </span>
+            <span class="ng-table-select">
+                <select [(ngModel)]="search.buId" (change)="ChangeSelect()">
+                    <option value="0">BU</option>
+                    <option *ngFor="let item of BUs"  [value]="item.id">{{item.buName}}</option>
+                </select>
+            </span>
+            <span class="ng-table-select">
+                <select [(ngModel)]="search.entitiesId" (change)="ChangeSelect()">
+                    <option value="0">Entity</option>
+                    <option *ngFor="let item of entity"  [value]="item.id">{{item.entityName}}</option>
+                </select>
+            </span>
+            <span class="ng-table-select">
+                <select [(ngModel)]="search.questionTypeId" (change)="ChangeSelect()">
+                    <option value="0">Question Type</option>
+                    <option *ngFor="let item of type"  [value]="item.id">{{item.questionTypeName}}</option>
+                </select>
+            </span>
+        </div>
+        <table class="ng-table-flex">
+            <tr class="ng-table-flex-th">
+                <th>BU</th>
+                <th>Entity</th>
+                <th>Question Type </th>
+                <th>Question ID</th>
+                <th>Document</th>
+                <th>Action</th>
+            </tr>
+            <tr class="ng-table-flex-tr" *ngFor="let item of DataList">
+                <td>{{item.buName}}</td>
+                <td>{{item.entityName}}</td>
+                <td>{{item.questionTypeName}}</td>
+                <td>{{item.questionCode}}</td>
+                <td>{{item.name}}</td>
+                <td>
+                    <div class="ng-operating-button" (click)="download(item.pathUrl)"><img src="../../assets/images/Questionnaire_read-only.svg"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="pagination-demo" *ngIf="pageShow">
+            <div class="block">
+              <el-pagination [total]="totalCount" (modelChange)="ChangePage($event)" [layout]="['prev', 'pager', 'next']"></el-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

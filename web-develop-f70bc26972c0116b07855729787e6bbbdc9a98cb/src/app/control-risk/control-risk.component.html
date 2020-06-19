@@ -1,0 +1,43 @@
+<div>
+    <div class="ng-crumbs"><a routerLink="/Homepage">Home</a>> <a [routerLink]="['/Questionnaires']">Questionnaire Management</a>>Control Risk Questionnaire</div>
+    <div class="ng-pageName-title">
+        <ul class="ng-pageName-title-left"><li>Questionnaire Management</li></ul>
+        <ul class="ng-pageName-title-right ng-color-blue">
+            <li (click)="download()"><img src="../../assets/images/GroupCopy2.svg">Export</li>
+            <li><a [routerLink]="[ '/Questionnaires/ControlRisk/SupportingDocument']" [queryParams]="{id:searchData.id}"><img src="../../assets/images/GroupCopy.svg">Supporting Document</a></li>
+        </ul>
+    </div>
+    <div class="ng-table-style">
+        <table class="ng-table-flex">
+            <tr class="ng-table-flex-th ng-table-flex-top">
+                <th></th>
+                <th colspan="6" class="ng-Entities">Entities Progress</th>
+            </tr>
+            <tr class="ng-table-flex-th">
+                <th>BU</th>
+                <th *ngFor="let item of EntityData"><span>{{item.entityName}}</span></th>
+                <th>Total Progress</th>
+            </tr>
+            <tr class="ng-table-flex-tr" *ngFor="let item of DataList">
+                <td>{{item.buName}}</td>
+                <td *ngFor="let progress of item.entities">
+                    <span *ngIf="progress.progress!='-'">{{progress.progress}}%</span>
+                    <span *ngIf="progress.progress=='-'">{{progress.progress}}</span>
+                </td>
+                <td class="ng-color-blue">{{item.totalProgress}}%</td>
+            </tr>
+        </table>
+    </div>
+    <div class="pagination-demo" *ngIf="pageShow">
+        <div class="block">
+          <el-pagination [total]="totalCount" (modelChange)="ChangePage($event)" [layout]="['prev', 'pager', 'next']"></el-pagination>
+        </div>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

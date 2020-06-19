@@ -1,0 +1,53 @@
+<div>
+    <div class="ng-crumbs"><a routerLink="/">Home</a>><a [routerLink]="['/QuestionTypes']"> Question Type Management</a>> Add Question Type</div>
+    <div class="ng-pageName-title"><ul class="ng-pageName-title-left"><li>Add Question Type</li></ul></div>
+    <div class="ng-write-style">
+        <div class="ng-write-style-left">
+            <div>
+                <ul>
+                    <li>Question Type Name</li>
+                    <li>
+                        <input type="text" [(ngModel)]="TypeInfo.questionTypeName" placeholder="Please enter Question Type Name">
+                    </li>
+                </ul>
+                <ul>
+                    <li>Question Type ID</li>
+                    <li>
+                        <input type="text" [(ngModel)]="TypeInfo.questionTypeCode" placeholder="Please enter Question Type ID">
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Status</li>
+                    <li>
+                        <select [(ngModel)]="TypeInfo.status" >
+                            <option>Active</option>
+                            <option>InActive</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ng-operation-time">
+            {{time | date:'dd-MM-yyyy HH:mm'}} {{updateUser}}
+        </div>
+    </div>
+    <a [routerLink]="[ '/Questions/QuestionInfo' ]" [queryParams]="{change:0}">
+        <div class="ng-AddQuestionType">
+            <span>+</span>
+            Add New Qusetion
+        </div>
+    </a>
+    <div class="ng-submit-btn">
+        <span class="ng-submit-save" (click)="addType()"><img src="../../assets/images/Group15.svg">SAVE</span>
+        <a [routerLink]="[ '/QuestionTypes' ]"><span class="ng-submit-cancel margin-left-30">CANCEL</span></a>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

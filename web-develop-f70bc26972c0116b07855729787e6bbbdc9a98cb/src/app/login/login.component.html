@@ -1,0 +1,57 @@
+
+    <div class="pageTop">
+        <span class="pageTop-photo"><img src="./../../assets/images/eira-img-face.svg"></span>
+    </div>
+    <div class="ng-login">
+        <div class="ng-login-center">
+            <div class="ng-login-center-padding" *ngIf="chooseValue==1">
+                <div class="ng-login-center-title">elRA Questionnaire System</div>
+                <div class="login">Login</div>
+                <div class="ng-login-input">
+                    <img src="../../assets/images/Group14.svg">
+                    <input type="text" placeholder="User(email)"  [(ngModel)]="postData.account" (keydown)="EnterLogin($event)">
+                </div>
+                <div class="ng-login-input">
+                    <img src="../../assets/images/Group12.png">
+                    <input type="password" placeholder="Password" [(ngModel)]="postData.password"  (keydown)="EnterLogin($event)">
+                </div>
+                <div class="ng-login-btn">
+                    <span (click)="submit()"><img src="../../assets/images/arrow-right-solid.png">LOGIN</span>
+                    <span><a [routerLink]="[ '/ForgetPassword' ]"> FORGET YOUR PASSWORD</a></span>
+                </div>
+            </div>
+            <div class="ng-login-center-padding" *ngIf="chooseValue==2">
+                <div class="ng-login-center-title">elRA Management Portal</div>
+                <div class="login">Login</div>
+                <div class="ng-login-input">
+                    <img src="../../assets/images/Group14.svg">
+                    <input type="text" placeholder="User(email)" [(ngModel)]="AdminData.account"  (keydown)="EnterAdminLogin($event)">
+                </div>
+                <div class="ng-login-input">
+                    <img src="../../assets/images/Group12.png">
+                    <input type="password" placeholder="Password" [(ngModel)]="AdminData.password"  (keydown)="EnterAdminLogin($event)">
+                </div>
+                <div class="ng-login-btn">
+                    <span (click)="submitAdmin()"><img src="../../assets/images/arrow-right-solid.png">LOGIN</span>
+                    <span><a [routerLink]="[ '/ForgetPassword' ]"> FORGET YOUR PASSWORD</a></span>
+                </div>
+            </div>
+            <div class="ng-login-table">
+                <div [ngClass]="{'active': chooseValue==1}" (click)="chooseLogin(1)">
+                    <span class="ng-login-table-wz ng-color-blue">System</span>
+                    <span class="ng-login-table-yd"></span>
+                </div>
+                <div [ngClass]="{'active': chooseValue==2}" (click)="chooseLogin(2)">
+                    <span class="ng-login-table-yd"></span>
+                    <span class="ng-login-table-wz ng-color-blue">Portal</span>
+                </div>
+            </div>
+        </div>
+        <div class="loading" *ngIf="elLoading">
+            <div class="loading-bg"></div>
+            <div class="loading-img">
+                <div><img src="../../assets/images/loding.gif"></div>
+                <div>loading...</div>
+            </div>
+        </div>
+    </div>

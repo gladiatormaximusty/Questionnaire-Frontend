@@ -1,0 +1,78 @@
+<div>
+    <div class="ng-crumbs"><a [routerLink]="['/Homepage']">Home</a>><a [routerLink]="['/Users']">User Management</a>>  {{title}}</div>
+    <div class="ng-pageName-title"><ul class="ng-pageName-title-left"><li>{{title}}</li></ul></div>
+    <div class="ng-write-style">
+        <div class="ng-write-style-left">
+            <div>
+                <ul class="ng-write-haIf">
+                    <li>
+                        <span>User First Name</span>
+                        <span><input type="text" placeholder="please enter User First Name" [(ngModel)]="userData.name"></span>
+                    </li>
+                    <li>
+                        <span>User Last Name</span>
+                        <span><input type="text" placeholder="please enter User Last Name" [(ngModel)]="userData.surname"></span>
+                    </li>
+                </ul>
+                <ul>
+                    <li>Use ID</li>
+                    <li><input type="text" placeholder="please enter Use ID" [(ngModel)]="userData.account"></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Email Adress</li>
+                    <li><input type="text" placeholder="please enter Email" [(ngModel)]="userData.emailAddress"></li>
+                </ul>
+                <ul>
+                    <li>Included BU</li>
+                    <li>
+                        <select [(ngModel)]="userData.bU_Id">
+                            <option *ngFor="let item of BuName" [value]="item.id">{{item.buName}}</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>Status</li>
+                    <li>
+                        <select [(ngModel)]="userData.status" [ngClass]="{'ng-color-red':userData.status=='Active'}">
+                            <option class="ng-red-color" value="Active">Active</option>
+                            <option class="ng-tip-color" value="InActive">InActive</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ng-write-style-right">
+            <ul>
+                <li class="ng-write-right-tx">
+                    <input type="file" name="imgFile" accept=".jpg,.png,.jpeg" (change)="fileChange($event)">
+                    <img [src]="imgUrl">
+                </li>
+                <li class="ng-write-right-tb"><img src="../../assets/images/Group12.svg"></li>
+            </ul>
+        </div>
+        <div class="ng-operation-time" *ngIf="changeid==0">
+            {{userData.updateTime | date:'dd-MM-yyyy HH:mm'}} {{userData.updateUser}}
+        </div>
+        <div class="ng-operation-time" *ngIf="changeid==1">
+            {{userData.updateTime }} {{userData.updateUser}}
+        </div>
+        <div class="ng-operation-checkbox">
+            <el-checkbox [model]="userData.isAdmin" [(ngModel)]="userData.isAdmin">admin</el-checkbox>
+        </div>
+    </div>
+    <div class="ng-submit-btn">
+        <span class="ng-submit-save" (click)="saveUser()"><img src="../../assets/images/Group15.svg">SAVE</span>
+        <span class="ng-submit-cancel margin-left-30"><a [routerLink]="['/Users']">CANCEL</a></span>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

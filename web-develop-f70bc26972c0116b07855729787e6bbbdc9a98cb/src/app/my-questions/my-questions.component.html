@@ -1,0 +1,51 @@
+
+    <div class="pageTop">
+        <span class="pageTop-photo"><img [src]="imagesTX" [routerLink]="['/ProfileInformationPersonal']" ></span>
+    </div>
+    
+<div class="ng-my-questions">
+    <div class="ng-my-questions-bg">        
+        <div class="ng-pageName-title">
+            <ul class="ng-pageName-title-left"><li>My Questionnaires</li></ul>
+        </div>
+        <div class="ng-table-switch">
+            <ul>
+                <li [ngClass]="{'active':nowIndex=='Pending'}" (click)="searchData('Pending')">Pending Questionnaires<span *ngIf="NumberData.pendingQuestionnaireCount">({{NumberData.pendingQuestionnaireCount}})</span></li>
+                <li [ngClass]="{'active':nowIndex=='Reviewing'}" (click)="searchData('Reviewing')">Reviewing Questionnaires<span *ngIf="NumberData.reviewingQuestionnaireCount">({{NumberData.reviewingQuestionnaireCount}})</span></li>
+                <li [ngClass]="{'active':nowIndex=='Finished'}" (click)="searchData('Finished')">Finished Questionnaires<span *ngIf="NumberData.finishedQuestionnaireCount">({{NumberData.finishedQuestionnaireCount}})</span></li>
+            </ul>
+        </div>
+        <div class="ng-table-style">
+            <table class="ng-table-flex">
+                <tr class="ng-table-flex-th">
+                    <th *ngIf="isEdit">Edit</th>
+                    <th>Questionnaires</th>
+                    <th>Submission Deadline</th>
+                    <th>Progress</th>
+                    <th>Risk Type</th>
+                </tr>
+                <tr class="ng-table-flex-tr" *ngFor="let item of DataList">
+                    <td *ngIf="isEdit"><a [routerLink]="['/EIQ']" [queryParams]="{id:item.id}"><div class="ng-operating-button"><img src="../../assets/images/7.1MyQuestionnaire.svg"></div></a></td>
+                    <td><a [routerLink]="['/EIQ']" [queryParams]="{id:item.id,isReadOnly:0}">{{item.questionnaireName}}</a></td>
+                    <td>{{item.submissionDeadline | date:'yyyy/MM/dd'}}</td>
+                    <td>{{item.progress}}%<br>
+                        <progress [value]="item.progress" max="100"></progress></td>
+                    <td [ngClass]="{'ng-color-red': item.riskType=='Control Risk'}" *ngIf="item.riskType=='Control Risk'">{{item.riskType}}</td>
+                    <td [ngClass]="{'ng-color-orange': item.riskType!='Control Risk'}" *ngIf="item.riskType!='Control Risk'">{{item.riskType}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="pagination-demo" *ngIf="pageShow">
+            <div class="block">
+              <el-pagination [total]="totalCount" (modelChange)="ChangePage($event)" [layout]="['prev', 'pager', 'next']"></el-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

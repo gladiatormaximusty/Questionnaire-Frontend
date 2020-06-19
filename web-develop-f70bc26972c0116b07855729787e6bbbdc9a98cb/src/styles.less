@@ -1,0 +1,191 @@
+@import "~element-angular/theme/index.css";
+/* You can add global styles to this file, and also import other style files */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, 
+strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, 
+tfoot, thead, tr, th, td ,textarea,input { margin:0; padding:0;  }
+body,html {font-size: 16px; font-family:'Roboto Regular','Microsoft Yahei';  color: #141414;height: 100%;}
+ul, ol,li { list-style: none; }
+input[type=password],input[type=text],textarea {
+    resize: none;
+    outline: 0;
+    -webkit-appearance: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #fff
+}
+button,input,select,textarea{font-size:100%;}
+table { border-collapse:collapse; border-spacing:0; }
+a,a:active,a:focus,a:hover,a:visited {text-decoration: none; color: #1D92EC;}
+a,img {
+    -webkit-touch-callout: none
+}
+fieldset,img{border:0;}
+
+
+.ng-pageName-title{
+    width: 100%;
+    margin-top: 30px;
+    line-height: 37px;
+    .ng-pageName-title-left{
+        font-size: 23px;
+        color: #141414;
+    }
+    .ng-pageName-title-right{
+        float: right;
+        li{
+            margin-left: 32px;
+        }
+    }
+    ul{
+        display: inline-block;
+        li{
+            display: inline-block;
+        }
+    }
+}
+
+.ng-color-red{
+    color: #FF4B54;
+}
+.ng-color-orange{
+    color: #F88D24;
+}
+.ng-color-0F{
+    color: #0F0F0F;
+}
+.ng-color-2e{
+    color: #2e2e2e;
+}
+.ng-color-blue{
+    color: #1D92EC
+}
+.ng-underline {
+    text-decoration: underline;
+}
+.ng-crumbs {
+    font-size: 14px;
+    a{
+        color: #0040F3;
+    }
+}
+
+.margin-left-30{
+    margin-left: 30px;
+}
+
+.el-checkbox__inner{
+    width: 18px;
+    height: 18px;
+}
+.el-checkbox__inner::after{
+    top: 3px;
+    left: 6px;
+}
+// input[type="checkbox"] {
+//     visibility: hidden;
+//     width: 18px;
+//     height: 18px;
+// }
+
+// input[type="checkbox"] +label{
+//     display: block;
+//     width: 18px;
+//     height: 18px;
+//     cursor: pointer;
+//     position: absolute;
+//     top: 0px;
+//     left: 0px;
+//     border: #000 solid 1px;
+// }
+// input[type="checkbox"]:checked +label{
+//     border: #1D92EC solid 1px;
+// }
+// input[type="checkbox"]:checked +label::before{
+//     display: block;
+//     content: "\2714";
+//     text-align: center;
+//     font-size: 14px;
+//     color: white;
+//     background: #1D92EC; 
+// }
+select::-ms-expand {
+    display: none;
+}
+select{ 
+    //清除select的边框样式
+    border: none; 
+    //清除select聚焦时候的边框颜色
+    outline: none;  
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    background:none;
+    background: url("/assets/images/editW.png") no-repeat scroll right center transparent;
+    background-size: 14px 7px;
+    background-position:95% 50%
+}
+
+
+.ng-submit-btn{
+    width: 100%;
+    .ng-submit-save{
+        display: inline-block;
+        background: #1D92EC;
+        width: 127px;
+        height: 42px;
+        line-height: 42px;
+        text-align: center;
+        color: #fff;
+        border-radius: 3px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    .ng-submit-cancel{
+        color: #1D92EC;
+        font-size: 15px;
+        cursor: pointer;
+    }
+}
+
+// .el-pager li.active{
+//     background: #f7f7f7 !important;
+//     border-radius: 50%;
+// }
+
+
+table {
+    th,td{
+        padding: 0 10px;
+    }
+}
+
+input:-webkit-autofill{
+    box-shadow: 0 0 0 23px #fff inset !important;
+}
+
+.loading{
+    width: 100%;
+    height: 100%;
+    .loading-bg{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        opacity: 0.8;
+        background-color: #fff;
+        z-index: 998;
+    }
+    .loading-img{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        font-size: 16px;
+        color: #1D92EC;
+        // font-style: italic;
+        font-weight: bold;
+        z-index: 999;
+    }
+}

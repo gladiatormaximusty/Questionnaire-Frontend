@@ -1,0 +1,22 @@
+
+<div class="pageTop">
+    <span class="pageTop-fold-btn" (click)="share()"><img src="../assets/images/header copy.png"></span>
+    <span></span>
+    <span class="pageTop-photo"><a [routerLink]="['/ProfileInformation']"><img [src]="imagesTX"></a></span>
+</div>
+<div class="ng-layout">
+    <div class="ng-layout-left">
+        <div class="ng-Hamburger" *ngIf="showFiller">
+            <p *ngFor="let item of navigation; let i = index;" [ngClass]="{'active':i==nowIndex}" (click)="routerTo(i)">
+                <a [routerLink]="item.link">
+                <span *ngIf="i!=nowIndex"><img [src]="item.images"></span>
+                <span *ngIf="i==nowIndex"><img [src]="item.activeImg"></span>
+                <span>{{item.name}}</span>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="ng-layout-right" [ngClass]="{'ng-show-width': showFiller}">
+        <router-outlet></router-outlet>
+    </div>
+</div>

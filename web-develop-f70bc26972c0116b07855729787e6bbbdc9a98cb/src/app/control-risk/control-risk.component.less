@@ -1,0 +1,111 @@
+.ng-crumbs{
+    width: 100%;
+}
+.ng-table-switch{
+    width: 100%;
+    margin-top: 34px;
+    ul{
+        li{
+            display: inline-block;
+            font-size: 16px;
+            color: #141414;
+            padding: 0 21px;
+            cursor: pointer;
+            height: 60px;
+            line-height: 60px;
+        }
+        .active{
+            background: #fff;
+        }
+    }
+}
+.ng-pageName-title-right{
+    li{
+        cursor: pointer;
+        img{
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: -8px;
+        }
+    }
+}
+.ng-table-style{
+    width: 100%;
+    background: #fff;
+    margin-top: 20px;
+    .ng-table-flex{
+        width: 100%;
+        text-align: right;
+        font-size: 15px;
+        .ng-table-flex-th{
+            color: #929292;
+            th{
+                font-weight: normal;
+            }
+        }
+        tr{
+            height: 67px;
+            border-bottom: #EBEBEB solid 1px;
+            th:first-child,td:first-child{
+                text-align: left;
+                padding-left: 3%;
+            }
+            th:last-child,td:last-child{
+                padding-right: 3%;
+            }
+            .ng-Entities{
+                text-align: center;
+            }
+            a{
+                text-decoration: underline;
+            }
+            progress{
+                width: 165px;
+                height: 4px;
+                background:#ECECEC;
+                border-radius: 3.5px;
+            }
+            progress::-webkit-progress-bar{     
+                background-color: #ECECEC;
+                border-radius: 3.5px;
+            }
+            progress::-webkit-progress-value{
+                background: #1D92EC;
+                border-radius: 3.5px; 
+            }
+            .ng-operating-button{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                vertical-align: middle;
+                text-align: center;
+                background: #fff;
+                display: inline-block;
+                border: #F0F0F0 solid 1px;
+                line-height: 40px;
+                cursor: pointer;
+            }
+        }
+        .ng-table-flex-top{
+            border: none;
+            vertical-align: bottom;
+            height: 40px;
+        }
+        .ng-table-flex-tr:hover{
+            background-color: #f8f8f8;
+        }
+    }
+}
+.pagination-demo{
+    width: 100%;
+    line-height: 46px;
+    margin-top: 20px;
+    &>div{
+        text-align: center;
+    }
+    /deep/ .el-pager li.active{
+        background: #f7f7f7 !important;
+        border-radius: 50%;
+        min-width: 28px;
+    }
+}

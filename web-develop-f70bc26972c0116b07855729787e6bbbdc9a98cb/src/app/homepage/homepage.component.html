@@ -1,0 +1,136 @@
+<!-- <app-profile-information #image></app-profile-information> -->
+<!-- <app-profile-information (image)="runImage"></app-profile-information> -->
+<!-- <pre>
+    {{reviewinglist | json}}
+</pre> -->
+<div class="homepage">
+    <div class="ng-header">
+        <span class="ng-header-photo"><img src={{image}}></span>
+        <span class="ng-eIRA-title">Welcome back to eIRA</span>
+    </div>
+    <div class="ng-Dashboard">
+        <ul class="ng-Dashboard-title"><li>My Dashboard</li></ul>
+        <ul class="ng-Dashboard-info">
+            <li class="ng-color-red">{{pendingQuestion}}</li>
+            <li>Pending <br>Questionnaires</li>
+        </ul>
+        <ul class="ng-Dashboard-info">
+            <li class="ng-color-0F">{{reviewingQuestion}}</li>
+            <li>Reviewing <br>Questionnaires</li>
+        </ul>
+        <ul class="ng-Dashboard-info">
+            <li class="ng-color-0F">{{finishedQuestion}}</li>
+            <li>Finished <br>Questionnaires</li>
+        </ul>
+    </div>
+    <div class="ng-table" >
+
+        <div class="ng-table-title">
+            <span class="ng-table-title-left">Pending Questionnaires ({{pendingQuestion}})</span>
+            <a [routerLink]="['/Questionnaires']" [queryParams]="{change:0}"><span class="ng-table-title-right">Show all ></span></a>
+        </div>
+        <div class="ng-table-style">
+            <div class="ng-table-top">
+                <span class="ng-table-top-left">
+                    <img src="../../assets/images/Group4.svg">
+                    <input type="text" placeholder="Search Questionnaires" (keydown)="inputPendingSearch($event)" [(ngModel)]="inspectPending.questionnaireName">
+                </span>
+                <span class="ng-table-top-right">Sort：Most Recent<img src="../../assets/images/Group20.png" (click)="sortList(pendinglist)"></span>
+            </div>
+            <table class="ng-table-flex" >
+                <tr class="ng-table-flex-th">
+                    <th>Action</th>
+                    <th>Questionnaires</th>
+                    <th>Submission Deadline</th>
+                    <th>Progress</th>
+                    <th>Risk Type</th>
+                </tr>
+
+                <tr class="ng-table-flex-tr" *ngFor="let item of pendinglist">
+                    <td><a [routerLink]="['/Questionnaires/NewQuestionnaire']" [queryParams]="{id:item.id}" ><div class="ng-operating-button"><img src="../../assets/images/7.1MyQuestionnaire.svg"></div></a></td>
+                    <td><a [routerLink]="['/Questionnaires/ControlRisk']" [queryParams]="{id:item.id}">{{item.questionnaireName}}</a></td>
+                    <td>{{item.submissionDeadline | date:'yyyy/MM/dd'}}</td>
+                    <td>{{item.progress}}%<br>
+                        <progress [value]=item.progress max="100"></progress></td>
+                    <td class="ng-color-red" [ngClass]="{'ng-color-orange': item.riskType=='Inherent Risk'}">{{item.riskType}}</td>
+                </tr>
+            </table>
+        </div>
+        <!-- <pre>
+            {{keyword | json}}
+        </pre> -->
+    </div>
+    <div class="ng-table">
+        <div class="ng-table-title">
+            <span class="ng-table-title-left">Reviewing Questionnaires</span>
+            <a [routerLink]="['/Questionnaires']" [queryParams]="{change:1}"><span class="ng-table-title-right">Show all ></span></a>
+        </div>
+        <div class="ng-table-style">
+            <div class="ng-table-top">
+                <span class="ng-table-top-left">
+                    <img src="../../assets/images/Group4.svg">
+                    <input type="text" placeholder="Search Questionnaires" (keydown)="inputReviewingSearch($event)" [(ngModel)]="inspectReviewing.questionnaireName">
+                </span>
+                <span class="ng-table-top-right">Sort：Most Recent<img src="../../assets/images/Group20.png" (click)="sortList(reviewinglist)"></span>
+            </div>
+            <table class="ng-table-flex">
+                <tr class="ng-table-flex-th">
+                    <th>Action</th>
+                    <th>Questionnaires</th>
+                    <th>Submission Deadline</th>
+                    <th>Progress</th>
+                    <th>Risk Type</th>
+                </tr>
+                <tr class="ng-table-flex-tr" *ngFor="let item of reviewinglist">
+                    <td><a [routerLink]="['/Questionnaires/NewQuestionnaire']" [queryParams]="{id:item.id}" ><div class="ng-operating-button"><img src="../../assets/images/7.1MyQuestionnaire.svg"></div></a></td>
+                    <td><a [routerLink]="['/Questionnaires/ControlRisk']" [queryParams]="{id:item.id}">{{item.questionnaireName}}</a></td>
+                    <td>{{item.submissionDeadline| date:'yyyy/MM/dd'}}</td>
+                    <td>{{item.progress}}%<br>
+                        <progress [value]=item.progress max="100"></progress></td>
+                    <!-- <td class="ng-color-red">{{item.riskType}}</td> -->
+                    <td class="ng-color-red" [ngClass]="{'ng-color-orange': item.riskType=='Inherent Risk'}">{{item.riskType}}</td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="ng-table">
+        <div class="ng-table-title">
+            <span class="ng-table-title-left">Finished Questionnaires</span>
+            <a [routerLink]="['/Questionnaires']" [queryParams]="{change:2}"><span class="ng-table-title-right">Show all ></span></a>
+        </div>
+        <div class="ng-table-style">
+            <div class="ng-table-top">
+                <span class="ng-table-top-left">
+                    <img src="../../assets/images/Group4.svg">
+                    <input type="text" placeholder="Search Questionnaires" (keydown)="inputFinishedSearch($event)" [(ngModel)]="inspectFinished.questionnaireName">
+                </span>
+                <span class="ng-table-top-right">Sort：Most Recent<img src="../../assets/images/Group20.png" (click)="sortList(finishedlist)"></span>
+            </div>
+            <table class="ng-table-flex">
+                <tr class="ng-table-flex-th">
+                    <!-- <th>Action</th> -->
+                    <th>Questionnaires</th>
+                    <th>Submission Deadline</th>
+                    <th>Progress</th>
+                    <th>Risk Type</th>
+                </tr>
+                <tr class="ng-table-flex-tr" *ngFor="let item of finishedlist">
+                    <!-- <td><div class="ng-operating-button"><img src="../../assets/images/Group13.svg"></div></td> -->
+                    <td><a [routerLink]="['/Questionnaires/ControlRisk']" [queryParams]="{id:item.id}">{{item.questionnaireName}}</a></td>
+                    <td>{{item.submissionDeadline| date:'yyyy/MM/dd'}}</td>
+                    <td>{{item.progress}}%<br>
+                        <progress [value]=item.progress max="100"></progress></td>
+                    <td class="ng-color-red" [ngClass]="{'ng-color-orange': item.riskType=='Inherent Risk'}">{{item.riskType}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

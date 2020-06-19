@@ -1,0 +1,54 @@
+<div>
+    <div class="ng-crumbs"><a [routerLink]="['/Homepage']">Home</a>> Questionnaire Management</div>
+    <div class="ng-pageName-title">
+        <ul class="ng-pageName-title-left"><li>Questionnaire Management</li></ul>
+        <div class="ng-new-addInfo"><a [routerLink]="[ '/Questionnaires/NewQuestionnaire']" [queryParams]="{id:0,change:0}" >+</a></div>
+    </div>
+    <div class="ng-table-switch">
+        <ul>
+            <li [ngClass]="{'active':nowIndex=='Pending'}" (click)="searchData('Pending')">Pending Questionnaires<span *ngIf="NumberData.pendingQuestionnaireCount">({{NumberData.pendingQuestionnaireCount}})</span></li>
+            <li [ngClass]="{'active':nowIndex=='Reviewing'}" (click)="searchData('Reviewing')">Reviewing Questionnaires<span *ngIf="NumberData.reviewingQuestionnaireCount">({{NumberData.reviewingQuestionnaireCount}})</span></li>
+            <li [ngClass]="{'active':nowIndex=='Finished'}" (click)="searchData('Finished')">Finished Questionnaires<span *ngIf="NumberData.finishedQuestionnaireCount">({{NumberData.finishedQuestionnaireCount}})</span></li>
+            <li [ngClass]="{'active':nowIndex=='Drafting'}" (click)="searchData('Drafting')">Drafting Questionnaires<span *ngIf="NumberData.draftingQuestionnaireCount">({{NumberData.draftingQuestionnaireCount}})</span></li>
+        </ul>
+    </div>
+    <div class="ng-table-style">
+        <div class="ng-table-top">
+            <span class="ng-table-top-left">
+                <img src="../../assets/images/Group4.svg">
+                <input type="text" placeholder="Search Questionnaires" (keydown)="inputSearch($event)" [(ngModel)]="Search.questionnaireName">
+            </span>
+            <span class="ng-table-top-right">Sort：Most Recent<img src="../../assets/images/Group20.png" (click)="sorted('submissionDeadline')"></span>
+        </div>
+        <table class="ng-table-flex">
+            <tr class="ng-table-flex-th">
+                <th *ngIf="isEdit">Edit</th>
+                <th>Questionnaires</th>
+                <th>Submission Deadline</th>
+                <th>Progress</th>
+                <th>Risk Type</th>
+            </tr>
+            <tr class="ng-table-flex-tr" *ngFor="let item of DataList">
+                <td *ngIf="isEdit"><a [routerLink]="[ '/Questionnaires/NewQuestionnaire']" [queryParams]="{id:item.id,change:1}" ><div class="ng-operating-button"><img src="../../assets/images/7.1MyQuestionnaire.svg"></div></a></td>
+                <td><a [routerLink]="['/Questionnaires/ControlRisk']" [queryParams]="{id:item.id}">{{item.questionnaireName}}</a></td>
+                <td>{{item.submissionDeadline | date:'yyyy/MM/dd'}}</td>
+                <td>{{item.progress}}%<br>
+                    <progress [value]="item.progress" max="100"></progress></td>
+                <td [ngClass]="{'ng-color-red': item.riskType=='Control Risk'}" *ngIf="item.riskType=='Control Risk'">{{item.riskType}}</td>
+                <td [ngClass]="{'ng-color-orange': item.riskType!='Control Risk'}" *ngIf="item.riskType!='Control Risk'">{{item.riskType}}</td>
+            </tr>
+        </table>
+        <div class="pagination-demo" *ngIf="pageShow">
+            <div class="block">
+              <el-pagination [total]="totalCount" (modelChange)="ChangePage($event)" [layout]="['prev', 'pager', 'next']"></el-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

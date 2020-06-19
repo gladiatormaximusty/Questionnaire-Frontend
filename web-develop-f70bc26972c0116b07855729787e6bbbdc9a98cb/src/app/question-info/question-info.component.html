@@ -1,0 +1,117 @@
+<div>
+    <div class="ng-crumbs"><a routerLink="/Homepage">Home</a>><a [routerLink]="['/Users']">Question Management</a>>  {{title}}</div>
+    <div class="ng-pageName-title"><ul class="ng-pageName-title-left"><li>{{title}}</li></ul></div>
+    <div class="ng-write-style">
+        <div class="ng-write-style-left">
+            <div>
+                <ul>
+                    <li>Question Type</li>
+                    <li>
+                        <select [(ngModel)]="userData.questionTypeId"><option *ngFor="let item of typeList" [value]="item.questionTypeId">{{item.questionTypeName}}</option></select>
+                    </li>
+                </ul>
+                <ul>
+                    <li>Question ID</li>
+                    <li><input type="text" [(ngModel)]="userData.questionCode" (keydown)="inputSearch($event)"></li>
+                </ul>
+            </div>
+            <div class="ng-write-textarea">
+                <span>Question</span>
+                <span><textarea name="" id="" cols="30" rows="10" placeholder="" [(ngModel)]="userData.question"></textarea></span>
+            </div>
+            <div>
+                <ul class="ng-write-haIf">
+                    <li>
+                        <span>Highest Rating</span>
+                        <span>
+                            <select [(ngModel)]="userData.highestRating">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </span>
+                    </li>
+                    <li>
+                        <span>Status</span>
+                        <span>
+                            <select [(ngModel)]="userData.status">
+                                <option value="Active">Active</option>
+                                <option value="InActive">InActive</option>
+                            </select>
+                        </span>
+                    </li>
+                </ul>
+                <ul>
+                    <li>Scoring Method</li>
+                    <li>
+                        <select [(ngModel)]="userData.scoringMethod">
+                            <option value="Aggregate">Aggregate</option>
+                            <option value="Maximum">Maximum</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ng-operation-time">
+            {{userData.updateTime | date:'dd-MM-yyyy HH:mm' }} {{userData.updateUser}}
+        </div>
+    </div>
+
+    <div class="ng-table-style">
+        <div class="ng-table-top">
+            <span class="ng-table-title">Answer</span>
+        </div>
+        <div class="ng-el-checkbox">
+            <span class="ng-table-top-check"><el-checkbox [model]="userData.hasAnswer" [(ngModel)]="userData.hasAnswer">Answer</el-checkbox></span>
+            <span class="ng-table-top-check"><el-checkbox [model]="userData.isAnswerMandatory" [(ngModel)]="userData.isAnswerMandatory">Mandatory</el-checkbox></span>
+        </div>
+        <table class="ng-table-flex">
+            <tr class="ng-table-flex-th">
+                <th>Answer</th>
+                <th>Recommended Score</th>
+                <th>Action</th>
+            </tr>
+            <tr class="ng-table-flex-tr" *ngFor="let item of userData.questionsAnswers;let key=index">
+                <td class="ng-table-text-long"><input type="text" placeholder="Please Fill in the Answer" [(ngModel)]="item.answerContent"></td>
+                <td class="ng-table-text-short"><input type="text" placeholder="Recommended Score" [(ngModel)]="item.recommendedScore"></td>
+                <td><div class="ng-operating-button" (click)="DelAnswer(key)"><img src="../../assets/images/ic_trash.png"></div></td>
+            </tr>
+            <div class="ng-new-addInfo" (click)="addList()"><span>+</span></div>
+        </table>
+        <div class="ng-Free-Text">
+            <div class="ng-Free-Text-title">Free Text</div>
+            <div class="ng-Free-Text-title"><el-checkbox [model]="userData.hasFreeText" [(ngModel)]="userData.hasFreeText">Free Text</el-checkbox></div>
+            <div class="ng-Free-Text-title">
+                <span><input type="text" placeholder="Free Text Placeholder" [(ngModel)]="userData.freeTextPlaceholder"></span>
+                <span><el-checkbox [model]="userData.isFreeTextNumeric" [(ngModel)]="userData.isFreeTextNumeric">Numeric</el-checkbox></span>
+                <span><el-checkbox [model]="userData.isFreeTextMandatory" [(ngModel)]="userData.isFreeTextMandatory">Mandatory</el-checkbox></span>
+            </div>
+        </div>
+        <div class="ng-Free-Text ng-Free-none">
+            <div class="ng-Free-Text-title">Supporting Document</div>
+            <div class="ng-Free-Text-title">
+                <span><el-checkbox [model]="userData.hasSupportingDocument" [(ngModel)]="userData.hasSupportingDocument">Supporting Document</el-checkbox></span>
+                <span><el-checkbox [model]="userData.isSupportingDocumentMandatory" [(ngModel)]="userData.isSupportingDocumentMandatory">Mandatory</el-checkbox></span>
+            </div>
+        </div>
+    </div>
+    <div class="ng-submit-btn">
+        <span class="ng-submit-save" (click)="saveUser()"><img src="../../assets/images/Group15.svg">SAVE</span>
+        <a [routerLink]="[ '/Questions']" ><span class="ng-submit-cancel margin-left-30">CANCEL</span></a>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>

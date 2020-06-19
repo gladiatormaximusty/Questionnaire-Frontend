@@ -1,0 +1,48 @@
+<div>
+    <div class="ng-crumbs"><a [routerLink]="['/Homepage']">Home</a>> Question Type Management</div>
+    <div class="ng-pageName-title"><ul class="ng-pageName-title-left"><li>Question Type Management</li></ul></div>
+
+    <div class="ng-table-style">
+        <div class="ng-table-top">
+            <span class="ng-table-top-left">
+                <img src="../../assets/images/Group4.svg">
+                <input type="text" placeholder="Search Question Type…" [(ngModel)]="search.questionTypeName" (keydown)="inputSearch($event)">
+            </span>
+        </div>
+        <div class="ng-new-addInfo"><a [routerLink]="['/QuestionTypes/AddQuestionType']">+</a> </div>
+        <table class="ng-table-flex">
+            <tr class="ng-table-flex-th">
+                <th>ID<img src="../../assets/images/Group20.png" (click)="sorted('questionTypeCode')"></th>
+                <th>Question Type Name<img src="../../assets/images/Group20.png" (click)="sorted('questionTypeName')"></th>
+                <th>No. of Questions<img src="../../assets/images/Group20.png" (click)="sorted('numberOfQuestions')"> </th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            <tr class="ng-table-flex-tr" *ngFor="let item of DataList,let key=index">
+                <td>{{item.questionTypeCode}}</td>
+                <td class="ng-color-blue ng-underline"><a [routerLink]="[ '/QuestionTypes/QuestionTypeInfo']" [queryParams]="{id:item.id}" > {{item.questionTypeName}}</a></td>
+                <td>{{item.numberOfQuestions}}</td>
+                <td [ngClass]="{'ng-color-red': item.status=='Active'}">{{item.status}}</td>
+                <td>
+                    <div class="ng-operating-button" (click)="ActionShow(key)"><img src="../../assets/images/Group13.svg"></div>
+                    <div class="ng-position-absolute" [hidden]="!item.isShow">
+                        <a [routerLink]="[ '/QuestionTypes/QuestionTypeInfo']" [queryParams]="{id:item.id}" ><span>Edit User Question Type</span></a>
+                        <span (click)="DelType(item.id)" *ngIf="item.status=='Active'">Delete</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="pagination-demo" *ngIf="pageShow">
+            <div class="block">
+              <el-pagination [total]="totalCount" (modelChange)="ChangePage($event)" [layout]="['prev', 'pager', 'next']"></el-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="loading" *ngIf="elLoading">
+        <div class="loading-bg"></div>
+        <div class="loading-img">
+            <div><img src="../../assets/images/loding.gif"></div>
+            <div>loading...</div>
+        </div>
+    </div>
+</div>
